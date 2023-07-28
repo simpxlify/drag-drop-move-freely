@@ -1,0 +1,42 @@
+<div cdkDropListGroup>
+  <div class="example-container">
+    <h2>Available items</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="items"
+      class="example-list"
+      cdkDropListSortingDisabled
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="example-box" *ngFor="let item of items" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+
+  <div class="example-container" style="position: relative">
+    <h2>Shopping basket</h2>
+    <div
+      class="example-boundary"
+      style="position: absolute; top: 0px"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div
+        class="example-box"
+        style="position: relative; z-index: 1"
+        cdkDragBoundary=".example-boundary"
+        *ngFor="let item of basket"
+        cdkDrag
+        [cdkDragFreeDragPosition]="dragPosition"
+      >
+        {{item}}
+      </div>
+      <div
+        style="position: absolute; top: 0px"
+        cdkDropList
+        [cdkDropListData]="basket"
+        class="example-boundary"
+        (cdkDropListDropped)="drop($event)"
+      ></div>
+    </div>
+  </div>
+</div>
